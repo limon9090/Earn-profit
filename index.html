@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProfitPlus.site</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    /* Login Form */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .login-form img {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    .login-form h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .login-form p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .login-form input {
+      width: 80%;
+      max-width: 300px;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 16px;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .login-form input::placeholder {
+      color: #999;
+    }
+
+    .login-form button {
+      width: 85%;
+      max-width: 310px;
+      padding: 10px;
+      background: #ff6f61;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-form button:hover {
+      background: #ff3b2f;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* Main Button Section */
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .btn-3d {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 15px;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: perspective(500px) rotateX(0deg);
+    }
+
+    .btn-3d:hover {
+      background: #f5f5f5;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transform: perspective(500px) rotateX(10deg);
+    }
+
+    .btn-3d i {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #ff6f61;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-3d:hover i {
+      transform: scale(1.2) rotateY(20deg);
+    }
+
+    /* Side Menu */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #ffffff;
+      transition: left 0.3s ease;
+      padding-top: 60px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .side-menu.open {
+      left: 0;
+    }
+
+    .menu-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: transparent;
+      border: none;
+      color: #333;
+      text-align: left;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .menu-btn i {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #ff6f61;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-btn:hover i {
+      transform: scale(1.2) rotateY(20deg);
+    }
+
+    /* Hamburger Menu Icon */
+    .menu-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+      z-index: 1000;
+    }
+
+    .menu-icon .bar {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    .menu-icon.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-icon.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-icon.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ffffff;
+      margin-top: 20px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .bottom-nav button {
+      background: transparent;
+      border: none;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .bottom-nav button i {
+      font-size: 24px;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    /* Custom Icon Colors */
+    .bottom-nav button:nth-child(1) i {
+      color: #4CAF50; /* Green for Home */
+    }
+
+    .bottom-nav button:nth-child(2) i {
+      color: #2196F3; /* Blue for Wallet */
+    }
+
+    .bottom-nav button:nth-child(3) i {
+      color: #FF9800; /* Orange for Profile */
+    }
+
+    .bottom-nav button:nth-child(4) i {
+      color: #9C27B0; /* Purple for Help */
+    }
+
+    /* Hover Effects */
+    .bottom-nav button:hover i {
+      transform: scale(1.2) rotateY(20deg);
+    }
+
+    .bottom-nav button:nth-child(1):hover i {
+      color: #45a049; /* Darker Green */
+    }
+
+    .bottom-nav button:nth-child(2):hover i {
+      color: #1e88e5; /* Darker Blue */
+    }
+
+    .bottom-nav button:nth-child(3):hover i {
+      color: #fb8c00; /* Darker Orange */
+    }
+
+    .bottom-nav button:nth-child(4):hover i {
+      color: #7b1fa2; /* Darker Purple */
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Form -->
+  <div class="login-form" id="loginForm">
+    <img src="https://i.ibb.co/zhVkRnvx/1000053282.png" alt="ProfitPlus.site Logo">
+    <h2>অনলাইনে ইনকাম করুন সহজে!</h2>
+    <p> এডমিনের দেওয়া ফোন নাম্বার এবং পাসওয়ার্ড দিয়ে লগইন করুন এবং শুরু করুন আপনার অনলাইন ইনকামের যাত্রা।</p>
+    <input type="text" id="phoneNumber" placeholder="ফোন নাম্বার">
+    <input type="password" id="password" placeholder="পাসওয়ার্ড">
+    <button onclick="login()">লগইন করুন</button>
+  </div>
+
+  <!-- Main Content (Shown after login) -->
+  <div class="main-content" id="mainContent" style="display: none;">
+    <!-- Header -->
+    <header>
+      <img src="https://i.ibb.co/zhVkRnvx/1000053282.png" alt="ProfitPlus.site Logo">
+    </header>
+
+    <!-- Main Button Section -->
+    <main>
+      <div class="button-grid">
+        <button class="btn-3d" onclick="window.location.href='from_filap.html'"><i class="fas fa-download"></i> ফ্রম ফিলাপ</button>
+        <button class="btn-3d" onclick="window.location.href='from_pro.html'"><i class="fas fa-briefcase"></i> ফ্রম প্রো</button>
+        <button class="btn-3d" onclick="window.location.href='facebook_sell.html'"><i class="fab fa-facebook"></i> ফেসবুক সেল</button>
+        <button class="btn-3d" onclick="window.location.href='gmail_sell.html'"><i class="fas fa-envelope"></i> জিমেইল সেল</button>
+        <button class="btn-3d" onclick="window.location.href='micro_job.html'"><i class="fas fa-laptop"></i> মাইক্রো জব</button>
+        <button class="btn-3d" onclick="window.location.href='withdraw.html'"><i class="fas fa-credit-card"></i> উইথড্র</button>
+        <button class="btn-3d" onclick="window.location.href='update.html'"><i class="fas fa-sync"></i> আপডেট</button>
+        <button class="btn-3d" onclick="window.location.href='income_map.html'"><i class="fas fa-chart-line"></i> ইনকাম ম্যাপ</button>
+        <!-- নতুন বাটন যোগ করা হয়েছে -->
+        <button class="btn-3d" onclick="window.location.href='course_session.html'"><i class="fas fa-chalkboard-teacher"></i> কোর্স সেশন</button>
+        <button class="btn-3d" onclick="window.location.href='developer_info.html'"><i class="fas fa-code"></i> ডেভেলপার ইনফো</button>
+      </div>
+    </main>
+
+    <!-- Hamburger Menu Icon -->
+    <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+    <!-- Side Menu Bar -->
+    <div class="side-menu" id="sideMenu">
+      <button class="menu-btn" onclick="window.location.href='https://www.facebook.com/groups/619397130871666/?ref=share&mibextid=NSMWBT'"><i class="fas fa-users"></i> ফেসবুক গ্রুপ</button>
+      <button class="menu-btn" onclick="window.location.href='https://t.me/Profitpulse_Official9x'"><i class="fas fa-bullhorn"></i> টেলিগ্ৰাম চ্যানেল</button>
+      <button class="menu-btn" onclick="window.location.href='official_facebook.html'"><i class="fab fa-facebook"></i> অফিসিয়াল পেইজ</button>
+      <button class="menu-btn" onclick="window.location.href='official_youtube.html'"><i class="fab fa-youtube"></i> অফিসিয়াল ইউটিউব</button>
+      <button class="menu-btn" onclick="window.location.href='income_review.html'"><i class="fas fa-money-bill-wave"></i> ইনকাম রিভিউ</button>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <button onclick="window.location.href='index.html'"><i class="fas fa-home"></i> হোম</button>
+      <button onclick="window.location.href='wallet.html'"><i class="fas fa-wallet"></i> ওয়ালেট</button>
+      <button onclick="window.location.href='profile.html'"><i class="fas fa-user"></i> প্রোফাইল</button>
+      <button onclick="window.location.href='help.html'"><i class="fas fa-question-circle"></i> হেল্প</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>2025.profitplus.site</p>
+    </footer>
+  </div>
+
+  <script>
+    // Login Function
+    function login() {
+      const phoneNumber = document.getElementById('phoneNumber').value;
+      const password = document.getElementById('password').value;
+
+      // Your provided phone number and password
+      const validPhoneNumber = '01614775866';
+      const validPassword = 'LimonhasanCEO*01614775866';
+
+      if (phoneNumber === validPhoneNumber && password === validPassword) {
+        alert('লগইন সফল!');
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        localStorage.setItem('isLoggedIn', 'true');
+      } else {
+        alert('ভুল ফোন নাম্বার বা পাসওয়ার্ড!');
+      }
+    }
+
+    // Check if logged in on page load
+    window.onload = function () {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true') {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      }
+    };
+
+    // Toggle Side Menu Function
+    function toggleMenu() {
+      const sideMenu = document.getElementById('sideMenu');
+      const menuIcon = document.getElementById('menuIcon');
+      sideMenu.classList.toggle('open');
+      menuIcon.classList.toggle('open');
+    }
+  </script>
+</body>
+  </html>
